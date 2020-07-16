@@ -31,7 +31,7 @@ class Venue(db.Model):
     __tablename__ = 'Venue'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
+    name = db.Column(db.String())
     city = db.Column(db.String(120))
     state = db.Column(db.String(120))
     address = db.Column(db.String(120))
@@ -40,6 +40,10 @@ class Venue(db.Model):
     facebook_link = db.Column(db.String(120))
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
+    venue_id = db.Column(db.Integer, db.ForeignKey('Venue.id'), nullable=False)
+
+    def __repr__(self):
+        return f'<Venue {self.id} {self.description}>'
 
 class Artist(db.Model):
     __tablename__ = 'Artist'
